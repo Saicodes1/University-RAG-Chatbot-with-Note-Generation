@@ -48,10 +48,14 @@ def computer_networks():
         user_query=data["message"]
 
         reply = response(user_query,"Computer_Networks", Chat1)
-        chat_entry = Chat1(user_question=user_query,bot_answer=reply)
-        db.session.add(chat_entry)
-        db.session.commit()
-        return jsonify({"reply": reply})
+        if reply.startswith("generated"):
+            download_url=f"/download/{os.path.basename(reply)}"
+            return jsonify({"reply":"Notes generated","filepath": download_url})
+        else:
+            chat_entry = Chat1(user_question=user_query,bot_answer=reply)
+            db.session.add(chat_entry)
+            db.session.commit()
+            return jsonify({"reply": reply})
     return render_template("computer_networks.html")
 
 @app.route("/download/<path:filename>")
@@ -59,4 +63,6 @@ def download_file(filename):
     return send_from_directory("generated_notes", filename, as_attachment=True)
 
 if __name__ == "__main__":
+    with app.app_context():
+        db.create_all()
     app.run()

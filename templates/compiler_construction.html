@@ -5,7 +5,7 @@
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
         body {
             margin: 0;
@@ -148,7 +148,7 @@
 
     <div class="input-area">
         <input type="text" id="message" placeholder="Ask about parsing, CFGs, LL(1), LR(0)..." />
-        <button onclick="sendMessage()">Send</button>
+        <button id="sendBtn" onclick="sendMessage()">Send</button>
     </div>
 </div>
 
@@ -172,8 +172,9 @@ async function sendMessage() {
 
     const data = await response.json();
 
-    // Add bot reply
-    messagesDiv.innerHTML += `<div class="bot">${data.reply}</div>`;
+    // Render bot reply as Markdown
+    const botHtml = marked.parse(data.reply);
+    messagesDiv.innerHTML += `<div class="bot">${botHtml}</div>`;
     messagesDiv.scrollTop = messagesDiv.scrollHeight;
 
     // Show download button if filepath is returned
@@ -185,6 +186,14 @@ async function sendMessage() {
         };
     }
 }
+
+// Allow pressing Enter to send the message
+document.getElementById("message").addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        document.getElementById("sendBtn").click();
+    }
+});
 </script>
 
 </body>

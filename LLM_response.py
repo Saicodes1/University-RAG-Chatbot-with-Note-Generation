@@ -47,7 +47,7 @@ def response(user_input, collection, Chat):
         #context = "\n\n".join([doc.page_content for doc in compressed_docs])
         context=""
         for doc in compressed_docs:
-            if doc.metadata["relevance_score"]>0.10:
+            if doc.metadata["relevance_score"]>0.05:
                 context +="\n\n"+doc.page_content
         prompt=f'''
     You are a highly trusted academic chatbot designed for university-level learning and assessment.
