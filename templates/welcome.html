@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Welcome 👋</h1>
+    <p>Select a subject to continue</p>
+
+    <div class="card-container">
+        <a href="{{ url_for('compiler_construction') }}" class="card">
+            <h2>Compiler Construction</h2>
+            <span>Life</span>
+        </a>
+
+        <a href="{{ url_for('computer_networks') }}" class="card">
+            <h2>Computer Networks</h2>
+            <span>Life 2</span>
+        </a>
+    </div>
+</div>
+
+</body>
+</html>

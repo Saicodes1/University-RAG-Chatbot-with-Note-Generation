@@ -1,0 +1,10 @@
+pypdf
+langchain-community
+langchain-unstructured[local]
+pdfplumber
+langchain-text-splitters
+sentence_transformers
+chromadb
+ollama
+pptx
+flask
