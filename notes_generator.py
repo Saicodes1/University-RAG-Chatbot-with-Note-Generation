@@ -16,15 +16,16 @@ def notes_generation(user_input,collection):
     )
 
     chapter = None
-    if "chapter_2" or "chapter 2" in user_input.lower():
+    if "chapter_2" in user_input.lower() or "chapter 2" in user_input.lower():
         chapter = "Chapter_2"
-    elif "chapter_3" or "chapter 3" in user_input.lower():
+    elif "chapter_3" in user_input.lower() or "chapter 3" in user_input.lower():
         chapter = "Chapter_3"
     elif "syntax analysis" in user_input.lower():
         chapter = "Syntax Analysis"
     elif "introduction to compilers and phases" in user_input.lower():
         chapter = "Introduction to Compilers and Phases"
 
+    print("chapter is:",chapter)
     retriever = vectorstore.as_retriever(
         search_type="similarity",
         search_kwargs={
