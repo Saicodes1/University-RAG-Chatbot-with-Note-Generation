@@ -6,5 +6,5 @@ langchain-text-splitters
 sentence_transformers
 chromadb
 ollama
-pptx
+python-pptx
 flask
